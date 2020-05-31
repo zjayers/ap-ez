@@ -83,7 +83,7 @@ class ApEz {
    * @returns This APIFeatures object - to allow chaining
    * @memberof APIFeatures
    */
-  pageinate() {
+  paginate() {
     //PAGINATION
     const page = parseInt(this.reqQuery.page, 10) || 1;
     const limit = parseInt(this.reqQuery.limit, 10) || 100;
