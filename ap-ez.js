@@ -96,4 +96,4 @@ class ApEz {
 }
 
 // EXPORT THE MODULE
-module.exports = APIFeatures;
+module.exports = ApEz;
