@@ -19,7 +19,7 @@ class ApEz {
   filter() {
     // FILTERING
     const queryObj = { ...this.reqQuery };
-    const excludedFields = ['page', 'sort', 'limit', 'fields'];
+    const excludedFields = ["page", "sort", "limit", "fields"];
     excludedFields.forEach((element) => {
       delete queryObj[element];
     });
@@ -28,7 +28,7 @@ class ApEz {
     let queryStr = JSON.stringify(queryObj);
     queryStr = queryStr.replace(
       /(gte|gt|lte|lt)/g,
-      (matchedStr) => '$' + matchedStr
+      (matchedStr) => "$" + matchedStr
     );
 
     // RUN THE QUERY AND STORE THE RESPONSE FOR FURTHER PARSING
@@ -47,11 +47,11 @@ class ApEz {
   sort() {
     // SORTING if a sort variable is present in the query
     if (this.reqQuery.sort) {
-      const sortBy = this.reqQuery.sort.split(',').join(' ');
+      const sortBy = this.reqQuery.sort.split(",").join(" ");
       this.dbQuery = this.dbQuery.sort(sortBy);
     } else {
       //If no sort field is specified - sort descending by createdAt Date
-      this.dbQuery = this.dbQuery.sort('-createdAt');
+      this.dbQuery = this.dbQuery.sort("-createdAt");
     }
 
     //Return the object so methods can be chained
@@ -67,11 +67,11 @@ class ApEz {
   limitFields() {
     // FIELD LIMITING
     if (this.reqQuery.fields) {
-      const fields = this.reqQuery.fields.split(',').join(' ');
+      const fields = this.reqQuery.fields.split(",").join(" ");
       this.dbQuery = this.dbQuery.select(fields);
     } else {
       //DEFAULT TO NOT INCLUDE FIELDS THAT SHOULD NOT NEED TO BE SENT
-      this.dbQuery = this.dbQuery.select('-__v');
+      this.dbQuery = this.dbQuery.select("-__v");
     }
     //Return the object so methods can be chained
     return this;
